@@ -26,11 +26,11 @@ para el siguiente periodo. Este sistema informático será alimentado mediante l
   * Si el alumno tiene una unidad reprobada, su calificación final es inmediatamente 60.
   * Si el alumno tiene una asistencia menor al 80% su calificación final es inmediatamente 60.
   * Se necesita que el sistema tenga un módulo de búsqueda y visualización de las calificaciones del alumno.
-  * Se deberán implementar los siguientes algoritmos de búsqueda:
+  * ~~Se deberán implementar los siguientes algoritmos de búsqueda:~~
     1. Búsqueda binaria
     1. Árbol binario de búsqueda
   * Cada materia tiene un máximo de 32 alumnos.
-  * El sistema deberá tener la opción de selección de algoritmo de ordenamiento, los cuales son:
+  * ~~El sistema deberá tener la opción de selección de algoritmo de ordenamiento, los cuales son:~~
     1. Burbuja
     1. Quick Sort
     1. Merge Sort
@@ -38,15 +38,6 @@ para el siguiente periodo. Este sistema informático será alimentado mediante l
 ### Requerimientos no funcionales
   * Se necesita que el sistema informático tenga un módulo de captura de los alumnos al archivo xlsx.
   * Se necesita que el sistema informático tenga un módulo de carga del archivo (xlsx, csv).
-  * Se necesita el módulo de visualización del orden de toma de carga. y su guardado en archivo PDF.
   
-### Requerimientos de documentación
-El sistema deberá ser documentado de la siguiente manera:
-  * Se deberá entregar un documento en PDF que contenga:
-    1. Diagramas de caso de uso (blanco, gris y negro)
-    1. Diagrama de clase
-    1. El código fuente se deberá documentar mediante doxygen (o javadoc)
-    1. Se requiere el plan de pruebas debidamente documentado.
-    
     
 **Cabe recordar que se deberán utilizar los conceptos mencionados como `Palabras clave`**
