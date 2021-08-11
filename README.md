@@ -2,7 +2,9 @@
   > Palabras Clave: Interfaces, Clases Abstractras
   
 ## Uso
+```bash
 java -jar gradeording-1.0-SNAPSHOT.jar [input] [output]  
+```
 * input: absolute or relative path to the excel/csv file with the inscriptions. 
 * output: csv or txt file to append the ordered list.
 
