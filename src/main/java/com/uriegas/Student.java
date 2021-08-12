@@ -43,7 +43,7 @@ public class Student implements Comparable<Student> {
     public void setFailed_subjects(int failed_subjects) {this.failed_subjects = failed_subjects;}
     public void setTotal_subjects(int total_subjects) {this.total_subjects = total_subjects;}
     public String toString() { return "Student: " + student_name + " " + student_first_last_name + " " + student_second_last_name + " " + student_id + " " + grade + " " + failed_subjects + " " + total_subjects; }
-    public String toCSV() { return student_name + "," + student_first_last_name + "," + student_second_last_name + "," + student_id + "," + grade + "," + failed_subjects + "," + total_subjects; }
+    public String toCSV() { return student_name + "," + student_first_last_name + "," + student_second_last_name + "," + student_id + "," + grade + "," + failed_subjects; }
     /**
      * Comparison method to sort the students by given restrictions:<p>
      * <ul>

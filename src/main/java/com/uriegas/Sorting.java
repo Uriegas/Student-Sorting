@@ -34,7 +34,7 @@ public class Sorting {
             grade /= total_subjects;//Calculate the average
             // <== Get information about the student from his inscriptions
 
-            result.add(new Student(list.get(1).getStudent_name(), list.get(1).getStudent_first_last_name(), list.get(1).getStudent_second_last_name(), list.get(1).getStudent_id(), grade, failed_subjects, total_subjects));//Add the student to the list
+            result.add(new Student(list.get(0).getStudent_name(), list.get(0).getStudent_first_last_name(), list.get(0).getStudent_second_last_name(), list.get(0).getStudent_id(), grade, failed_subjects, total_subjects));//Add the student to the list
         }
         return result;
     }
