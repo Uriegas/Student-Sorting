@@ -29,11 +29,11 @@ public class Reader {
         XSSFWorkbook worksheet = new XSSFWorkbook(f);
         XSSFSheet sheet = worksheet.getSheetAt(0);
         Iterator<Row> rowIt = sheet.rowIterator();//Iterator over rows
-
+        rowIt.next();//Skip first row
         while(rowIt.hasNext()){
-            Row row = rowIt.next();//Ignore the first row
-            // if(isRowEmpty(row))
-            //     continue;
+            Row row = rowIt.next();//Current row
+            if(isRowEmpty(row))//If row is empty, skip it
+                 continue;
             Iterator<Cell> cellIt = row.cellIterator();
             // values.add(new ArrayList<String>());
             String name = cellIt.next().getStringCellValue();
@@ -43,16 +43,21 @@ public class Reader {
             String class_name = cellIt.next().getStringCellValue();
             String class_id = cellIt.next().getStringCellValue();
             int student_attendance = (int)cellIt.next().getNumericCellValue();
-            double grade = 60.0;
+            double grade = 0.0;
             int grades_count = 0;
             //Get grade
             double unit_grade = 0;
             while(cellIt.hasNext()){
-                unit_grade = cellIt.next().getNumericCellValue();
+                Cell cell = cellIt.next();
+                if( cell.getCellType() != CellType.BLANK )
+                    unit_grade = cell.getNumericCellValue();
+                else
+                    break;
                 if( unit_grade < 70.0){ // INFO: Any grade lower than 70 is reprobatory
                     grade = 60.0;
                     break;
                 }
+                grade += unit_grade;
                 grades_count++;
             }
             if(grades_count > 8) System.out.println("WARNING: More than 8 grades for student " + name + " " + first_last_name + " " + second_last_name);
@@ -157,4 +162,30 @@ public class Reader {
         }
         return sum / s.size();
     }
+    private static boolean isRowEmpty(Row row){
+        boolean isEmpty = true;
+		DataFormatter dataFormatter = new DataFormatter();
+		if (row != null) {
+			for (Cell cell : row) {
+				if (dataFormatter.formatCellValue(cell).trim().length() > 0) {
+					isEmpty = false;
+					break;
+				}
+			}
+		}
+		return isEmpty;
+    }
+    // private static boolean hasNotEmptyCells(Row row, int n_columns){
+    //     boolean isEmpty = true;
+    //     DataFormatter dataFormatter = new DataFormatter();
+    //     if (row != null) {
+    //         for (Cell cell : row) {
+    //             if (dataFormatter.formatCellValue(cell).trim().length() > 0) {
+    //                 isEmpty = false;
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     return isEmpty;
+    // }
 }
