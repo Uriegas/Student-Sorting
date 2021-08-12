@@ -5,7 +5,7 @@ package com.uriegas;
 /**
  * An inscription of a student to a course.
  */
-public class Inscription implements Sortable<Double> {
+public class Inscription {
     private String student_name;
     private String student_first_last_name;
     private String student_second_last_name;
@@ -82,11 +82,5 @@ public class Inscription implements Sortable<Double> {
     public int compareTo(Object o) {
         Inscription ins = (Inscription) o;
         return this.student_id - ins.getStudent_id();
-    }
-    public Double get(int index) {
-        return Double.valueOf(getGrade());
-    }
-    public int size() {
-        return 1;
     }
 }
