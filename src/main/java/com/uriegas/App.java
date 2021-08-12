@@ -55,6 +55,8 @@ public class App {
                     System.err.println( "Error: " + e.getMessage() );
                 }catch( NullPointerException e ){
                     System.err.println(ERROR + "List is empty");
+                }catch( Exception e ){
+                    System.err.println(ERROR + "Error: " + e.getMessage());
                 }
             }
         // <== Menu loop
