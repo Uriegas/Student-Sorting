@@ -18,8 +18,8 @@ public class Reader {
         String fileName = file.getName();
         if(fileName.endsWith(".xlsx"))
             return readExcel(file);
-        else if(fileName.endsWith(".csv"))
-            return readCsv(file);
+        // else if(fileName.endsWith(".csv"))
+        //     return readCsv(file);
         else
             throw new IllegalArgumentException("File format not supported");
     }
@@ -70,80 +70,77 @@ public class Reader {
         f.close();
         return inscriptions;
     }
-    public static List<Inscription> readCsv(File file) throws IOException {
-        List<Inscription> inscriptions = new ArrayList<Inscription>();
-        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line = br.readLine(); //Read and ignore the first line
-            // HashMap<String, List<String>> map = new HashMap<String, List<String>>();
-            // for(String s : line.split(","))
-            //     map.put(s, new ArrayList<String>());
-            while((line = br.readLine()) != null) {
-                String[] fields = line.split(",");
-                // ==> Get units grades
-                List<Double> values = new ArrayList<Double>();
-                for(int i = 7; i < fields.length; i++)
-                    values.add(Double.parseDouble(fields[i]));
-                if(values.size() > 8) System.out.println("WARNING: More than 8 grades for student " + fields[0] + " " + fields[1] + " " + fields[2] + " " + fields[3]);
-                // <== Get units grades
-                inscriptions.add(new Inscription(fields[0], fields[1], fields[2], Integer.valueOf(fields[3]), fields[4], fields[5], Integer.valueOf(fields[6]), avg(values)));
-            }
-        }catch(NullPointerException e){
-            System.out.println("Error: " + e.getMessage());
-            throw new IllegalArgumentException("Error: File has not the expected columns");
-        }catch(NumberFormatException e){
-            System.out.println("Error: " + e.getMessage());
-            throw new IllegalArgumentException("Error: Expected a number in this column");
-        }
-
-
-
-        return inscriptions;
-    }
+    // public static List<Inscription> readCsv(File file) throws IOException {
+    //     List<Inscription> inscriptions = new ArrayList<Inscription>();
+    //     try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+    //         String line = br.readLine(); //Read and ignore the first line
+    //         // HashMap<String, List<String>> map = new HashMap<String, List<String>>();
+    //         // for(String s : line.split(","))
+    //         //     map.put(s, new ArrayList<String>());
+    //         while((line = br.readLine()) != null) {
+    //             String[] fields = line.split(",");
+    //             // ==> Get units grades
+    //             List<Double> values = new ArrayList<Double>();
+    //             for(int i = 7; i < fields.length; i++)
+    //                 values.add(Double.parseDouble(fields[i]));
+    //             if(values.size() > 8) System.out.println("WARNING: More than 8 grades for student " + fields[0] + " " + fields[1] + " " + fields[2] + " " + fields[3]);
+    //             // <== Get units grades
+    //             inscriptions.add(new Inscription(fields[0], fields[1], fields[2], Integer.valueOf(fields[3]), fields[4], fields[5], Integer.valueOf(fields[6]), avg(values)));
+    //         }
+    //     }catch(NullPointerException e){
+    //         System.out.println("Error: " + e.getMessage());
+    //         throw new IllegalArgumentException("Error: File has not the expected columns");
+    //     }catch(NumberFormatException e){
+    //         System.out.println("Error: " + e.getMessage());
+    //         throw new IllegalArgumentException("Error: Expected a number in this column");
+    //     }
+    //     return inscriptions;
+    // }
     public static void write(File file, List<Student> students) throws Exception {
         String fileName = file.getName();
-        if(fileName.endsWith(".xlsx"))
-            writeExcel(file, students);
-        else if(fileName.endsWith(".csv"))
+        // if(fileName.endsWith(".xlsx"))
+        //     writeExcel(file, students);
+        if(fileName.endsWith(".csv"))
             writeCsv(file, students);
         else
             throw new IllegalArgumentException("File format not supported");
     }
-    public static void writeExcel(File file, List<Student> students) throws IOException {
-        FileOutputStream f = new FileOutputStream(file);
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Students");
-        XSSFRow row = sheet.createRow(0);
-        XSSFCell cell = row.createCell(0);
-        cell.setCellValue("Name");
-        cell = row.createCell(1);
-        cell.setCellValue("First name");
-        cell = row.createCell(2);
-        cell.setCellValue("Second name");
-        cell = row.createCell(3);
-        cell.setCellValue("Student ID");
-        cell = row.createCell(4);
-        cell.setCellValue("Grade");
-        cell = row.createCell(5);
-        cell.setCellValue("Failed Subjects");
-        for(Student student : students) {
-            row = sheet.createRow(sheet.getPhysicalNumberOfRows());
-            cell = row.createCell(0);
-            cell.setCellValue(student.getStudent_name());
-            cell = row.createCell(1);
-            cell.setCellValue(student.getStudent_first_last_name());
-            cell = row.createCell(2);
-            cell.setCellValue(student.getStudent_second_last_name());
-            cell = row.createCell(3);
-            cell.setCellValue(student.getStudent_id());
-            cell = row.createCell(4);
-            cell.setCellValue(student.getGrade());
-            cell = row.createCell(5);
-            cell.setCellValue(student.getFailed_subjects());
-        }
-        workbook.write(f);
-        workbook.close();
-        f.close();
-    }
+    // public static void writeExcel(File file, List<Student> students) throws IOException {
+    //     FileOutputStream f = new FileOutputStream(file);
+    //     XSSFWorkbook workbook = new XSSFWorkbook();
+    //     XSSFSheet sheet = workbook.createSheet("Students");
+    //     XSSFRow row = sheet.createRow(0);
+    //     XSSFCell cell = row.createCell(0);
+    //     cell.setCellValue("Name");
+    //     cell = row.createCell(1);
+    //     cell.setCellValue("First name");
+    //     cell = row.createCell(2);
+    //     cell.setCellValue("Second name");
+    //     cell = row.createCell(3);
+    //     cell.setCellValue("Student ID");
+    //     cell = row.createCell(4);
+    //     cell.setCellValue("Grade");
+    //     cell = row.createCell(5);
+    //     cell.setCellValue("Failed Subjects");
+    //     for(Student student : students) {
+    //         row = sheet.createRow(sheet.getPhysicalNumberOfRows());
+    //         cell = row.createCell(0);
+    //         cell.setCellValue(student.getStudent_name());
+    //         cell = row.createCell(1);
+    //         cell.setCellValue(student.getStudent_first_last_name());
+    //         cell = row.createCell(2);
+    //         cell.setCellValue(student.getStudent_second_last_name());
+    //         cell = row.createCell(3);
+    //         cell.setCellValue(student.getStudent_id());
+    //         cell = row.createCell(4);
+    //         cell.setCellValue(student.getGrade());
+    //         cell = row.createCell(5);
+    //         cell.setCellValue(student.getFailed_subjects());
+    //     }
+    //     workbook.write(f);
+    //     workbook.close();
+    //     f.close();
+    // }
     public static void writeCsv(File file, List<Student> students) throws IOException {
         FileOutputStream f = new FileOutputStream(file);
         PrintWriter writer = new PrintWriter(f);
@@ -153,15 +150,15 @@ public class Reader {
         writer.close();
         f.close();
     }
-    private static double avg(List<Double> s){
-        double sum = 0;
-        for(Double d : s){
-            if(d < 70.0)
-                return 60.0;
-            sum += d;
-        }
-        return sum / s.size();
-    }
+    // private static double avg(List<Double> s){
+    //     double sum = 0;
+    //     for(Double d : s){
+    //         if(d < 70.0)
+    //             return 60.0;
+    //         sum += d;
+    //     }
+    //     return sum / s.size();
+    // }
     private static boolean isRowEmpty(Row row){
         boolean isEmpty = true;
 		DataFormatter dataFormatter = new DataFormatter();
