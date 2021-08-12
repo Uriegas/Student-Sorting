@@ -43,6 +43,11 @@ public class Reader {
             String class_name = cellIt.next().getStringCellValue();
             String class_id = cellIt.next().getStringCellValue();
             int student_attendance = (int)cellIt.next().getNumericCellValue();
+
+            // ==> Validation
+            if(name == null || first_last_name == null || second_last_name == null || student_id == 0 || class_name == null || class_id == null || name == "" || first_last_name == "" || second_last_name == "" || class_name == "" || class_id == "")
+                throw new IllegalArgumentException("Invalid row, some cells are missing");
+
             double grade = 0.0;
             int grades_count = 0;
             //Get grade
