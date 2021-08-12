@@ -24,27 +24,18 @@ para el siguiente periodo. Este sistema informático será alimentado mediante l
   * Código de la materia
   
 ## Requerimientos funcionales
-  * El sistema deberá ser robusto al número variables de unidades de cada materia [1,4]
-  * Cada alumno puede tomar un máximo de 8 materias al cuatrimestre.
-  * Si el promedio total de dos alumnos es igual, se le dará prioridad de la siguiente manera:
-    * cuatrimestres mayores
+  * El sistema deberá ser robusto al número variables de unidades de cada materia [1,4] (Reading restriction)
+  * Cada alumno puede tomar un máximo de 8 materias al cuatrimestre (Reading restriction).
+  * Si el alumno tiene una unidad reprobada, su calificación final es inmediatamente 60 (Reading restriction).
+  * Si el alumno tiene una asistencia menor al 80% su calificación final es inmediatamente 60 (Reading restriction).
+  * Cada materia tiene un máximo de 32 alumnos (Reading restriction).
+  * Si el promedio total de dos alumnos es igual, se le dará prioridad de la siguiente manera (Sorting restrictions):
+    * cuatrimestres mayores (antiguedad)
     * número mayor de materias tomadas por el alumno
-    * número mayor de materias aprobadas.
-  * Si el alumno tiene una unidad reprobada, su calificación final es inmediatamente 60.
-  * Si el alumno tiene una asistencia menor al 80% su calificación final es inmediatamente 60.
-  * Se necesita que el sistema tenga un módulo de búsqueda y visualización de las calificaciones del alumno.
-  * ~~Se deberán implementar los siguientes algoritmos de búsqueda:~~
-    1. Búsqueda binaria
-    1. Árbol binario de búsqueda
-  * Cada materia tiene un máximo de 32 alumnos.
-  * ~~El sistema deberá tener la opción de selección de algoritmo de ordenamiento, los cuales son:~~
-    1. Burbuja
-    1. Quick Sort
-    1. Merge Sort
+    * número mayor de materias aprobadas (This one makes no sense if we already grouped by failed subjects and order by the previous point ).
     
 ### Requerimientos no funcionales
   * Se necesita que el sistema informático tenga un módulo de captura de los alumnos al archivo xlsx.
   * Se necesita que el sistema informático tenga un módulo de carga del archivo (xlsx, csv).
+  * Se necesita que el sistema tenga un módulo de búsqueda y visualización de las calificaciones del alumno.
   
-    
-**Cabe recordar que se deberán utilizar los conceptos mencionados como `Palabras clave`**
