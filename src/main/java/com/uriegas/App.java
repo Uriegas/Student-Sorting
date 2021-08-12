@@ -30,30 +30,33 @@ public class App {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String line;
         List<Student> students = new ArrayList<Student>();
-        try{
             System.out.println("Welcome to the sorting inscriptions program.");
             System.out.println(INFO + "Type 'exit' to exit this program");
             while(true){
-                System.out.println(INFO + "Type 'view' to view sorted list");
-                System.out.print("Input file please (XLSX or CSV)> ");
-                line = in.readLine();
-                if(line.equals("exit"))
-                    break;
-                else if(line.equals("view")){
-                    if(!students.isEmpty()){
-                        System.out.println(INFO + "Sorted list:");
-                        students.forEach(System.out::println);
-                    }else
-                        System.out.println(ERROR + "List is empty");
-                }else{
-                    System.out.println(INFO + "Reading: " + line + "...");
-                    run(line, "output.csv");
-                    System.out.println(SUCCESS + "Done.");
+                try{
+                    System.out.println(INFO + "Type 'view' to view sorted list");
+                    System.out.print("Input file please (XLSX or CSV)> ");
+                    line = in.readLine();
+                    if(line.equals("exit"))
+                        break;
+                    else if(line.equals("view")){
+                        if(!students.isEmpty() || students == null){
+                            System.out.println(INFO + "Sorted list:");
+                            System.out.println("Name,First last name,Second last name,Student ID,Grade,No Failed Subjects");
+                            students.forEach(s -> System.out.println( s.toCSV()));
+                        }else
+                            System.out.println(ERROR + "List is empty");
+                    }else{
+                        System.out.println(INFO + "Reading: " + line + "...");
+                        students = run(line, "output.csv");
+                        System.out.println(SUCCESS + "Done.");
+                    }
+                }catch( IOException e ){
+                    System.err.println( "Error: " + e.getMessage() );
+                }catch( NullPointerException e ){
+                    System.err.println(ERROR + "List is empty");
                 }
             }
-        }catch( IOException e ){
-            System.err.println( "Error: " + e.getMessage() );
-        }
         // <== Menu loop
     }
     public static List<Student> run(String inputFile, String outputFile){
